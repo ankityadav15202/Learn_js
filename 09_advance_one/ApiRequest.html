@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request</title>
+    <style>
+        body{
+            color: white;
+            text-align: center;
+        }
+        p{
+            display: block;
+        }
+        img{
+            width: 100px;
+        }
+    </style>
+</head>
+<body style="background-color: #212121;">
+    
+    <div class="card">
+
+    </div>
+    
+    <script>
+
+        const requestUrl = 'https://api.github.com/users/ankityadav15202'
+        const xhr = new XMLHttpRequest()
+        const p = document.createElement('p')
+        const img = document.createElement('img')
+        const followerCount = document.createElement('p')
+        
+        xhr.open('GET', requestUrl)
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState===4){
+                const data  = JSON.parse(this.responseText)
+                console.log(data.avatar_url);
+                const userName = data.name
+                const userImage = data.avatar_url
+                p.innerHTML= `Name : ${userName}`
+                img.src = userImage
+                followerCount.innerHTML= `Followers : ${data.followers}`
+                document.body.appendChild(img)
+                document.body.appendChild(p)
+                document.body.appendChild(followerCount)
+            }
+        }
+        xhr.send()
+
+
+    </script>
+</body>
+</html>

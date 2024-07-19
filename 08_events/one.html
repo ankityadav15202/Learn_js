@@ -1,0 +1,64 @@
+//what we learned
+//event propagation
+//bubling, capturing
+//function(e) event objects
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing events</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="river" src="screenshot.png" alt="river"></li>
+            <li><img width="200px" id="japan" src="screenshot.png" alt=""></li>
+            <li><img width="200px" id="prayes" src="screenshot.png" alt=""></li>
+            <li><img width="200px" id="owl" src="screenshot.png" alt=""></li>
+            <li><img width="200px" id="animal" src="screenshot.png" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">google</a></li>
+        </ul>
+    </div>
+    <script>
+
+        //learn these events these are important
+        //event objects, ex= function(e)
+        //types, timestamps, defaultPrevented
+        //target, toElement, sourceElement, currentTarget
+        //clicentx, clientY, screenX, ScreenY  
+        //altkey, ctrlkey, shiftkey, keyCode
+        //learn these events these are important
+
+
+        document.getElementById('images').addEventListener('click',function(e){
+            alert('clicked inside the ul')   
+        }, false) //true false event propagation, its has two phase true and false, false is bubling & true is capturing
+            document.getElementById('river').addEventListener('click',function(e){
+                alert('river clicked')   
+                e.stopPropagation() // this will stop going to the ul
+        }, false)
+        // document.getElementById('google').addEventListener('click', function(e){
+        //     e.preventDefault()
+        //     e.stopPropagation()
+        //     console.log('clicked google');
+        // },false)
+
+        document.querySelector('#images').addEventListener('click', function(e){
+            console.log(e.target.parentNode);//here li is the parent of img tag
+            if(e.target.tagName==='IMG'){
+                console.log(e.target.id);
+                let removeIt = e.target.parentNode
+                removeIt.remove()
+            }else{
+                console.log(e.target.id);
+            }
+            // removeIt.parentNode.removeChild(removeIt)
+        },false)
+            // removeChild(removeIt)
+
+</script>
+</body>
+</html>

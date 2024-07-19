@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Changer</title>
+    <style>
+        body {
+            background-color: #fff;
+            color:black;
+            text-align: center;
+        }
+        .div{
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            height: 100px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        #grey{
+            background-color: grey;
+            /* border: 1px solid white; */
+            /* color: white; */
+        }
+        #white{
+            background-color: white;
+        }
+        #blue{
+            background-color: blue;
+            color: white;
+        }
+        #yellow{
+            background-color: yellow;
+        }
+        section{
+            margin: 100px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Its Color Changer Project | Theme Changer</h1>
+    <section class="color-changer" id="color-changer">
+        <div class="div" id="grey" >grey</div>
+        <div class="div" id="white" >White</div>
+        <div class="div" id="yellow" >Yellow</div>
+        <div class="div" id="blue" >Blue</div>
+    </section>
+    <h2>Click On Any of the color box to change the theme</h2>
+    <script>
+        var body = document.querySelector('body');
+        var div = body.querySelectorAll('div')
+        var black = document.getElementById("black");
+        var white = document.getElementById("white");
+        var yellow = document.getElementById("yellow");
+        var blue = document.getElementById("blue");
+        
+        div.forEach((color)=> {
+            color.addEventListener('click', function(e){
+                body.style.backgroundColor = e.target.id;
+            })
+        })
+        
+        // black.addEventListener("click", function(){
+        //     body.style.backgroundColor="black"
+        //     body.style.color="white"
+        //     black.style.border="1px solid white"
+        //     white.style.color="black"
+        // })
+
+        // white.addEventListener("click", function(){
+        //     body.style.backgroundColor="white"
+        //     black.style.border="1px solid black"
+        //     body.style.color="black"
+        // })
+
+        // yellow.addEventListener("click", function(){
+        //     body.style.backgroundColor="yellow"
+        //     yellow.style.border="1px solid white"
+        //     body.style.color="black"
+        // })
+
+        // blue.addEventListener("click", function(){
+        //     body.style.backgroundColor="blue"
+        //     blue.style.border="1px solid white"
+        //     body.style.color="white"
+        // })
+
+
+    </script>
+</body>
+</html>

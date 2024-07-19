@@ -1,0 +1,38 @@
+<!-- What we lean
+ setTimeout() -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">stop</button>
+    <script>
+
+        const ankit = ()=>{
+            console.log('Hello ankit')
+        }
+        setTimeout(ankit, 2000);
+        
+        // setTimeout(function(){
+        //     console.log('Hello Ankit');
+        // },2000)
+
+        // const title = document.querySelector('h1').addEventListener('click', function(){
+        // })
+        const changeTitle = function(){
+            document.querySelector('h1').innerHTML='Best JS Series'
+        }
+        // changeTitle()
+        const changeMe = setTimeout(changeTitle,2000)
+        const stop = document.querySelector('#stop').addEventListener('click',function(e){
+            clearTimeout(changeMe)
+            console.log('stopped');
+        })
+</script>
+</body>
+</html>

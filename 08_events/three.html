@@ -1,0 +1,44 @@
+<!-- What we lean
+ interval() -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Set interval</title>
+ </head>
+ <body>
+     <h1>Chai aur js</h1>
+     <button id="stop">stop</button>
+     <button id="start">start</button>
+     <script>
+
+        let intervalId = 0
+ 
+        const saytime = function(e){
+            const date = new Date().toLocaleTimeString()
+            console.log(e, date);
+        }
+        // const intervalId =  setInterval(saytime,1000, 'time is :')
+        
+        const startStop = function(e){
+            document.querySelector('#start').addEventListener('click',function(e){
+                if(!intervalId){
+                intervalId =  setInterval(saytime,1000, 'time is :')
+                console.log('started');
+                }
+            })
+            document.querySelector('#stop').addEventListener('click',function(e){
+                
+                    clearInterval(intervalId)
+                    intervalId=null
+                    console.log('stopped');
+            })
+        }
+        startStop()
+        // console.log(Math.floor(Math.random()*16));
+
+</script>
+ </body>
+ </html>

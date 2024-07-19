@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guess</title>
+</head>
+<body>
+    <form action="">
+        <label for="guessField">Guess a number</label>
+        <input type="text" id="guessField" class="guessField">
+        <input type="Submit" value="Submit Guess" id="guessSubmit" class="guessSubmit">
+    </form>
+
+    <div class="resultPara">
+        <p>Pervious Guess : <span id="prevGuess"></span></p>
+        <p>Guess Remaining : <span id="remainingGuess">10</span></p>
+        <p class="lowOrHigh"></p>
+    </div>
+    <script>
+
+        const randomNum = parseInt(Math.random()*100);
+        console.log(randomNum);
+        const submit = document.querySelector('#guessSubmit')
+        const userInput = document.querySelector("#guessField")
+        const startOver = document.querySelector(".resultPara")
+
+        const p =document.createElement('p')
+
+        const prevGuess = document.querySelector("#prevGuess")
+        const guessRemaining = document.querySelector("#remainingGuess")
+        const lowOrHigh = document.querySelector("#lowOrHigh")
+
+        let prevGuesses = []
+        let numberOfGuess = 1
+        let playGame = true
+
+        if(playGame){
+            submit.addEventListener('click',function(e){
+                e.preventDefault()
+                let guess = parseInt(userInput.value)
+                numberOfGuess++
+                validateGuess(guess)
+                console.log(guess);
+            })
+        }
+
+        function validateGuess(guess){
+            if(isNaN(guess)){
+                alert('please enter a valid number')
+            }else if(guess<1 || guess>100 || guess===''){
+                alert('please enter a valid number')
+            }
+            else{
+                prevGuesses.push(guess)
+                if(numberOfGuess > 11){
+                    displayGuess(guess)
+                    displayMessage(`Game Over. Random Number was ${randomNum}`)
+                    endGame()
+                }
+                else{
+                    displayGuess(guess)
+                    checkGuess(guess)
+                }
+            }
+        }
+        
+        function checkGuess(guess){
+            if(guess===randomNum){
+                alert('you guessed it right',guess)
+                endGame()
+            }
+            else if(guess<randomNum){
+                alert('Your Guess is too low guess another number')
+            }else if(guess>randomNum){
+                alert('your guess is too hight')
+            }
+        }
+        function displayGuess(guess){
+            userInput.value=''
+            prevGuess.innerHTML+=` ${guess}`
+            remainingGuess = parseInt(11-numberOfGuess)    
+            guessRemaining.innerHTML=remainingGuess
+        }
+
+        function displayMessage(message){
+            lowOrHigh.innerHTML=`<h2>hello</h2>`
+        }   
+
+        // function endGame(){
+        //     userInput.value=""
+        //     userInput.setAttribute('disables','')   
+        //     p.classList.add('button')
+        //     p.innerHTML=`<h1 id="newGame">Start New Game<h1>`;
+        //     playGame=false
+        //     startOver.appendChild(p)
+        //     newGame();
+
+        // }
+
+        // function newGame(){
+        //     prevGuesses=[]
+        // }
+
+    </script>
+</body>
+</html>
+
